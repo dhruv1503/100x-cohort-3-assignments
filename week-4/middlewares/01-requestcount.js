@@ -10,6 +10,11 @@ let requestCount = 0;
 // maintain a count of the number of requests made to the server in the global
 // requestCount variable
 
+const countLogger = (reques, response, next) => {
+  requestCount += 1;
+  next()
+}
+app.use(countLogger);
 app.get('/user', function(req, res) {
   res.status(200).json({ name: 'john' });
 });
